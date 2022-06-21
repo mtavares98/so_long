@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:56:52 by mtavares          #+#    #+#             */
-/*   Updated: 2022/06/20 22:32:00 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/06/21 23:17:01 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ void	init_values(t_gen *gen)
 	gen->map = malloc(sizeof(t_map));
 	if (!gen->map)
 		exit_prog(gen, "Allocation failed for map\n", 1);
-	gen->map->character = 0;
+	gen->map->player = 0;
 	gen->map->collectable = 0;
 	gen->map->exit = 0;
 	gen->map->t_check_map = check_map;
 	gen->map->str = NULL;
 	gen->map->walls = 0;
+	gen->map->empty = 0;
 	gen->win = malloc(sizeof(t_win));
 	if (!gen->win)
 		exit_prog(gen, "Allocation failed for win\n", 1);

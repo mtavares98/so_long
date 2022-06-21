@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/06/20 22:18:14 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/06/21 23:16:54 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ struct s_map
 	int		(*t_check_map)(t_gen *gen, char **av);
 	char	**str;
 	int		walls;
-	int		character;
+	int		player;
 	int		collectable;
 	int		exit;
+	int		empty;
 };
 
 struct s_win

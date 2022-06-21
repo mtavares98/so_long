@@ -6,7 +6,7 @@
 #    By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 22:22:28 by mtavares          #+#    #+#              #
-#    Updated: 2022/06/20 22:22:16 by mtavares         ###   ########.fr        #
+#    Updated: 2022/06/20 23:50:22 by mtavares         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ MINILIBX	=	libs/minilibx-linux/libmlx.a
 
 NAME		=	so_long
 
-CC			=	gcc
+CC			=	clang
 
 CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
 
