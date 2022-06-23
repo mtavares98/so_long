@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/06/21 23:16:54 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/06/23 13:04:43 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,41 +32,47 @@
 /* Typedefs */
 
 typedef struct s_gen	t_gen;
-typedef struct s_map	t_map;
-typedef struct s_win	t_win;
-typedef struct s_hook	t_hook;
+typedef void			(*t_hooks)(t_gen *gen);
+typedef void			(*t_iv)(t_gen *gen);
+typedef void			(*t_cw)(t_gen *gen);
+typedef int				(*t_cm)(t_gen *gen, char **av);
 
 /* Structs */
 
-struct s_gen
-{
-	t_win	*win;
-	t_map	*map;
-	t_hook	*hook;
-	void	(*init_values)(t_gen *gen);
-};
-
 struct s_hook
 {
-	void	(*moviments)(t_gen *gen);
+	t_hooks	hooks;
 };
+typedef struct s_hook	t_hook;
 
 struct s_map
 {
-	int		(*t_check_map)(t_gen *gen, char **av);
+	t_cm	check_map;
 	char	**str;
 	int		walls;
 	int		player;
 	int		collectable;
 	int		exit;
 	int		empty;
+	int		other;
 };
+typedef struct s_map	t_map;
 
 struct s_win
 {
 	void	*mlx;
 	void	*win;
-	void	(*create_win)(t_win *win);
+	t_cw	create_window;
+};
+typedef struct s_win	t_win;
+
+struct s_gen
+{
+	t_win	win;
+	t_map	map;
+	t_hook	hook;
+	t_iv	init_values;
+
 };
 
 /* Functions */
@@ -76,6 +82,6 @@ int		check_map(t_gen *gen, char **av);
 char	**map_to_str(char **map, int fd, int counter);
 void	hook_loops(t_gen *gen);
 void	exit_prog(t_gen	*gen, char	*str, int i);
-void	create_window(t_win *obj);
+void	create_window(t_gen *gen);
 
 #endif
