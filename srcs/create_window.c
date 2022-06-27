@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:10:48 by mtavares          #+#    #+#             */
-/*   Updated: 2022/06/22 15:19:18 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:35:27 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void	create_window(t_gen	*gen)
 	int	x;
 	int	y;
 
-	x = 140;
-	y = 150;
+	y = -1;
+	while (gen->map.str[++y])
+		;
+	y *= 16;
+	x = ft_strlen(gen->map.str[1]) * 16;
 	gen->win.mlx = mlx_init();
 	gen->win.win = mlx_new_window(gen->win.mlx, x, y, "MyGame");
 }

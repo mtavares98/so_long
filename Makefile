@@ -22,35 +22,39 @@ LIBFT		=	libs/libft/libft.a
 
 PRINTF		=	libs/printf_fd/libprintf_fd.a
 
-MINILIBX	=	libs/minilibx-linux/libmlx.a
+MLX			=	mlx_linux/libmlx_linux.a
 
 NAME		=	so_long
 
-CC			=	clang
+CC			=	gcc
 
-CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g
 
 RM			=	rm -rf
 
 all:		$(NAME)
 
 $(OBJS_DIR)/%.o :	$(SRCS_DIR)/%.c
-		@mkdir -p $(OBJS_DIR)
-		@$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+		mkdir -p $(OBJS_DIR)
+		$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
-$(NAME):	$(LIBFT) $(PRINTF) $(OBJS)
-		@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) $(MINILIBX) -L/minilibx-linux -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+$(NAME):	$(LIBFT) $(PRINTF) $(MLX) $(OBJS)
+		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 $(LIBFT):
-		@make -C libs/libft
+		make -C libs/libft
 
 $(PRINTF):
-		@make -C libs/printf_fd
+		make -C libs/printf_fd
+
+$(MLX):
+		make -f Makefile -C mlx_linux
 
 clean:
 		$(RM) $(OBJS_DIR)
 		make clean -C libs/libft
 		make clean -C libs/printf_fd
+		make clean -f Makefile -C mlx_linux
 
 fclean:		clean
 		$(RM) $(NAME)

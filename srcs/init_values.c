@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:56:52 by mtavares          #+#    #+#             */
-/*   Updated: 2022/06/22 16:44:01 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:47:55 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ void	init_values(t_gen *gen)
 	gen->win.create_window = create_window;
 	gen->win.mlx = NULL;
 	gen->win.win = NULL;
+	gen->img.load_img = load_imgs;
 }

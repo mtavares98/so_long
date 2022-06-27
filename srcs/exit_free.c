@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 00:54:35 by mtavares          #+#    #+#             */
-/*   Updated: 2022/06/22 15:23:47 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/06/25 22:47:47 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ void	exit_prog(t_gen *gen, char	*str, int i)
 			free(gen->map.str[j]);
 		free(gen->map.str);
 	}
+	if (gen->win.mlx)
+		free(gen->win.mlx);
 	exit(i);
 }
