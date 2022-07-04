@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/06/27 17:39:09 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/06/27 21:36:57 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit_prog(&gen, "Wrong number of arguments\n", 1);
 	gen.map.check_map(&gen, av);
-	gen.img.load_img(&gen);
 	gen.win.create_window(&gen);
+	gen.img.load_img(&gen);
 	gen.hook.hooks(&gen);
 }
