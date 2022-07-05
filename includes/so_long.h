@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/06/27 17:37:05 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/07/05 00:07:21 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,22 @@
 # include <fcntl.h>
 # include <string.h>
 # include <math.h>
+
+# ifndef W
+#  define W 119
+# endif
+
+# ifndef S
+#  define S 115
+# endif
+
+# ifndef A
+#  define A 97
+# endif
+
+# ifndef D
+#  define D 100
+# endif
 
 /* Keycode importants:
 	w = 119
@@ -45,13 +61,17 @@ typedef struct s_hook	t_hook;
 
 struct s_map
 {
+	int			player_x;
+	int			player_y;
 	char		**str;
+	int			enemy;
 	int			walls;
 	int			player;
 	int			collectable;
 	int			exit;
 	int			empty;
 	int			other;
+	int			end;
 	t_cm		check_map;
 };
 typedef struct s_map	t_map;
@@ -87,8 +107,9 @@ struct s_gen
 void	exit_prog(t_gen	*gen, char	*str, int i);
 void	init_values(t_gen *gen);
 int		check_map(t_gen *gen, char **av);
+void	move_player(t_gen *gen, int keycode);
 char	**map_to_str(char **map, int fd, int counter);
-void	load_imgs(t_gen *gen);
+void	map_to_img(t_gen *gen);
 void	hook_loops(t_gen *gen);
 void	create_window(t_gen *gen);
 

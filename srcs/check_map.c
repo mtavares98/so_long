@@ -6,13 +6,32 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:10:03 by mtavares          #+#    #+#             */
-/*   Updated: 2022/06/22 22:22:25 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/07/05 00:08:24 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	have_comp(t_gen *gen)
+static int	count_comp(t_gen *gen, int i, int j)
+{
+	if (gen->map.str[i][j] == 'E')
+		gen->map.exit++;
+	else if (gen->map.str[i][j] == 'C')
+		gen->map.collectable++;
+	else if (gen->map.str[i][j] == 'P')
+		gen->map.player++;
+	else if (gen->map.str[i][j] == '0')
+		gen->map.empty++;
+	else if (gen->map.str[i][j] == '1')
+		gen->map.walls++;
+	else if (gen->map.str[i][j] == 'X')
+		gen->map.enemy++;
+	else
+		return (1);
+	return (0);
+}
+
+static int	have_comp(t_gen *gen)
 {
 	int	i;
 	int	j;
@@ -23,15 +42,7 @@ int	have_comp(t_gen *gen)
 		j = 0;
 		while (gen->map.str[i][++j] != '\0')
 		{
-			if (gen->map.str[i][j] == 'E')
-				gen->map.exit++;
-			else if (gen->map.str[i][j] == 'C')
-				gen->map.collectable++;
-			else if (gen->map.str[i][j] == 'P')
-				gen->map.player++;
-			else if (gen->map.str[i][j] == '0')
-				gen->map.empty++;
-			else if (gen->map.str[i][j] != '1')
+			if (count_comp(gen, i, j) == 1)
 				return (1);
 		}
 	}
@@ -41,7 +52,7 @@ int	have_comp(t_gen *gen)
 	return (0);
 }
 
-int	map_rect(t_gen *gen)
+static int	map_rect(t_gen *gen)
 {
 	int	i;
 
@@ -56,7 +67,7 @@ int	map_rect(t_gen *gen)
 	return (0);
 }
 
-int	map_closed(t_gen *gen)
+static int	map_closed(t_gen *gen)
 {
 	int	i;
 	int	j;
