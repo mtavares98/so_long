@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:35:11 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/05 19:15:02 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/07/19 05:34:52 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ static void	print_steps(t_gen *gen, int steps)
 	str = ft_itoa(steps);
 	while (++i <= x)
 		mlx_put_image_to_window(gen->win.mlx, gen->win.win, \
-		gen->img.img[2], i * 32, 0);
+		gen->img.img[0], i * 32, 0);
 	mlx_string_put(gen->win.mlx, gen->win.win, 32, 32, 0x00000000, str);
 	free(str);
 }
 
 static void	update_map(t_gen *gen, int keycode)
 {
-	mlx_put_image_to_window(gen->win.mlx, gen->win.win, gen->img.img[1], \
+	mlx_put_image_to_window(gen->win.mlx, gen->win.win, gen->img.img[2], \
 	(gen->map.player_x - (keycode == A) + (keycode == D)) * 32, \
 	(gen->map.player_y - (keycode == W) + (keycode == S)) * 32);
-	mlx_put_image_to_window(gen->win.mlx, gen->win.win, gen->img.img[3], \
+	mlx_put_image_to_window(gen->win.mlx, gen->win.win, gen->img.img[1], \
 	(gen->map.player_x) * 32, (gen->map.player_y) * 32);
 }
 

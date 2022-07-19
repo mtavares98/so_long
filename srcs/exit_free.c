@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 00:54:35 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/05 15:13:20 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/07/19 04:29:39 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	free_mlx(t_gen *gen, int i)
 	}
 	if (gen->win.win)
 		mlx_destroy_window(gen->win.mlx, gen->win.win);
+	if (gen->win.mlx)
+		free(gen->win.mlx);
 	exit(i);
 }
 

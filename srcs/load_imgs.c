@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:05:36 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/05 15:23:03 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/07/19 05:40:02 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,20 @@ static void	get_imgs(t_gen *gen)
 	if (gen->map.enemy)
 		gen->img.img[5] = mlx_xpm_file_to_image(gen->win.mlx, "img/05.xpm", \
 	&width, &height);
+	else
+		gen->img.img[5] = NULL;
 }
 
-static void	load_img(t_gen *gen, int x, int y)
+void	destroy_imgs(t_gen *gen)
 {
-	if (gen->map.str[y][x] == '1')
-		mlx_put_image_to_window(gen->win.mlx, \
-		gen->win.win, gen->img.img[2], x * 32, y * 32);
-	else if (gen->map.str[y][x] == '0')
-		mlx_put_image_to_window(gen->win.mlx, \
-		gen->win.win, gen->img.img[3], x * 32, y * 32);
-	if (gen->map.str[y][x] == 'C')
-		mlx_put_image_to_window(gen->win.mlx, \
-		gen->win.win, gen->img.img[4], x * 32, y * 32);
-	else if (gen->map.str[y][x] == 'P')
-		mlx_put_image_to_window(gen->win.mlx, \
-		gen->win.win, gen->img.img[1], x * 32, y * 32);
-	else if (gen->map.str[y][x] == 'E')
-		mlx_put_image_to_window(gen->win.mlx, \
-		gen->win.win, gen->img.img[0], x * 32, y * 32);
-	else if (gen->map.str[y][x] == 'X')
-		mlx_put_image_to_window(gen->win.mlx, \
-		gen->win.win, gen->img.img[5], x * 32, y * 32);
+	int	i;
+
+	i = 2;
+	while (++i < 5 + (gen->map.enemy > 0))
+	{
+		mlx_destroy_image(gen->win.mlx, gen->img.img[i]);
+		gen->img.img[i] = NULL;
+	}
 }
 
 void	map_to_img(t_gen *gen)
@@ -67,6 +59,10 @@ void	map_to_img(t_gen *gen)
 	{
 		x = -1;
 		while (gen->map.str[y][++x])
-			load_img(gen, x, y);
+			mlx_put_image_to_window(gen->win.mlx, gen->win.win, \
+		gen->img.img[(gen->map.str[y][x] == '1') * 0 + \
+		(gen->map.str[y][x] == '0') + (gen->map.str[y][x] == 'P') * 2 \
+		+ (gen->map.str[y][x] == 'C') * 3 + (gen->map.str[y][x] == 'E') * 4 + \
+		(gen->map.str[y][x] == 'X') * 5], x * 32, y * 32);
 	}
 }
