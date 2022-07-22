@@ -6,11 +6,21 @@
 #    By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 22:22:28 by mtavares          #+#    #+#              #
-#    Updated: 2022/07/19 04:43:50 by mtavares         ###   ########.fr        #
+#    Updated: 2022/07/22 16:59:54 by mtavares         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	$(foreach dir, $(SRCS_DIR), $(wildcard $(dir)/*.c))
+SRCS		=	$(SRCS_DIR)/check_map.c \
+				$(SRCS_DIR)/create_window.c \
+				$(SRCS_DIR)/exit_free.c \
+				$(SRCS_DIR)/get_next_line.c \
+				$(SRCS_DIR)/get_next_line_utils.c \
+				$(SRCS_DIR)/hooks.c \
+				$(SRCS_DIR)/init_values.c \
+				$(SRCS_DIR)/load_imgs.c \
+				$(SRCS_DIR)/main.c \
+				$(SRCS_DIR)/map_to_str.c \
+				$(SRCS_DIR)/move_player.c
 
 SRCS_DIR	=	srcs
 
@@ -22,13 +32,13 @@ LIBFT		=	libs/libft/libft.a
 
 PRINTF		=	libs/printf_fd/libprintf_fd.a
 
-MLX			=	mlx_linux/libmlx_linux.a
+MLX			=	mlx_linux/libmlx_Linux.a
 
 NAME		=	so_long
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-Wall -Wextra -Werror
 
 RM			=	rm -rf
 
@@ -48,13 +58,13 @@ $(PRINTF):
 		make -C libs/printf_fd
 
 $(MLX):
-		make -f Makefile -C mlx_linux
+		make -C mlx_linux
 
 clean:
 		$(RM) $(OBJS_DIR)
 		make clean -C libs/libft
 		make clean -C libs/printf_fd
-		make clean -f Makefile -C mlx_linux
+		make clean -C mlx_linux
 
 fclean:		clean
 		$(RM) $(NAME)
