@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:35:11 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/19 05:34:52 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:02:41 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	update_map(t_gen *gen, int keycode)
 	(gen->map.player_x) * 32, (gen->map.player_y) * 32);
 }
 
-static void	colision(t_gen *gen, int keycode, char *next_move, int steps)
+static void	moveplayer(t_gen *gen, int keycode, char *next_move, int steps)
 {
 	if (*next_move == 'X')
 		exit_prog(gen, "You lost\n", 0);
@@ -55,7 +55,7 @@ static void	colision(t_gen *gen, int keycode, char *next_move, int steps)
 	print_steps(gen, steps);
 }
 
-void	move_player(t_gen *gen, int keycode)
+void	check_mov(t_gen *gen, int keycode)
 {
 	static int	steps = 0;
 	char		*next_move;
@@ -65,6 +65,6 @@ void	move_player(t_gen *gen, int keycode)
 	if (*next_move == 'C')
 		gen->map.collectable--;
 	if (*next_move != '1' && (*next_move != 'E' || !gen->map.collectable))
-		colision(gen, keycode, next_move, ++steps);
+		moveplayer(gen, keycode, next_move, ++steps);
 	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:40:27 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/04 20:11:00 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:03:07 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static int	key_hook(int keycode, t_gen *gen)
 {
 	if (!gen->map.end)
 		exit_prog(gen, "You win\n", 0);
-	if (keycode == 65307)
+	if (keycode == ESC)
 		exit_prog(gen, "Exited the game\n", 0);
-	if (keycode == 119 || keycode == 97 || keycode == 115 || keycode == 100)
-		move_player(gen, keycode);
+	if (keycode == W || keycode == A || keycode == S || keycode == D)
+		check_mov(gen, keycode);
 	return (0);
 }
 

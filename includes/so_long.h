@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/05 00:07:21 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:02:57 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@
 
 # ifndef D
 #  define D 100
+# endif
+
+# ifndef ESC
+#  define ESC 65307
 # endif
 
 /* Keycode importants:
@@ -107,7 +111,7 @@ struct s_gen
 void	exit_prog(t_gen	*gen, char	*str, int i);
 void	init_values(t_gen *gen);
 int		check_map(t_gen *gen, char **av);
-void	move_player(t_gen *gen, int keycode);
+void	check_mov(t_gen *gen, int keycode);
 char	**map_to_str(char **map, int fd, int counter);
 void	map_to_img(t_gen *gen);
 void	hook_loops(t_gen *gen);
