@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_window.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:10:48 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/19 05:50:47 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/12 16:36:15 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	create_window(t_gen	*gen)
 		;
 	y *= 32;
 	x = ft_strlen(gen->map.str[1]) * 32;
-	if (gen->win.mlx)
-		free(gen->win.mlx);
 	gen->win.mlx = mlx_init();
 	if (!gen->win.mlx)
 		exit_prog(gen, "Error ocurred during mlx_init\n", 1);

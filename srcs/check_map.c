@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:10:03 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/05 00:08:24 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/12 16:19:36 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	map_rect(t_gen *gen)
 
 	i = -1;
 	while (gen->map.str[++i + 1])
-	{	
+	{
 		if (ft_strlen(gen->map.str[i]) != ft_strlen(gen->map.str[i + 1]))
 			return (1);
 	}
@@ -101,9 +101,9 @@ int	check_map(t_gen *gen, char **av)
 	if (fd == -1)
 		exit_prog(gen, "File doesn't exits\n", 1);
 	gen->map.str = map_to_str(gen->map.str, fd, 0);
+	close(fd);
 	if (!gen->map.str)
 		exit_prog(gen, "File's empty\n", 1);
-	close(fd);
 	i = map_rect(gen);
 	if (i == 1)
 		exit_prog(gen, "Map isn't rectangular\n", 1);
