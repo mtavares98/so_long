@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:10:03 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/12 16:19:36 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/17 21:51:25 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	have_comp(t_gen *gen)
 				return (1);
 		}
 	}
-	if (gen->map.exit < 1 || gen->map.collectable < 1 || \
+	if (gen->map.exit != 1 || gen->map.collectable < 1 || \
 	gen->map.player != 1)
 		return (1);
 	return (0);
@@ -113,6 +113,7 @@ int	check_map(t_gen *gen, char **av)
 		exit_prog(gen, "Map is not closed\n", 1);
 	if (have_comp(gen))
 		exit_prog(gen, \
-	"It requires one player, exit and colectable or have invalid chars\n", 1);
+	"It requires one player, exit and at leat one \
+colectable or have invalid chars\n", 1);
 	return (1);
 }

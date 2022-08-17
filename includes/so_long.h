@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/16 18:55:08 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/17 22:49:58 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ struct s_gen
 
 struct s_check_path
 {
-	int		x;
-	int		y;
 	int		len_x;
 	int		len_y;
 	char	**map;
