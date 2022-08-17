@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_imgs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:05:36 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/19 05:40:02 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/16 17:35:02 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,5 @@ void	map_to_img(t_gen *gen)
 		+ (gen->map.str[y][x] == 'C') * 3 + (gen->map.str[y][x] == 'E') * 4 + \
 		(gen->map.str[y][x] == 'X') * 5], x * 32, y * 32);
 	}
+	destroy_imgs(gen);
 }

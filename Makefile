@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+         #
+#    By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 22:22:28 by mtavares          #+#    #+#              #
-#    Updated: 2022/07/22 16:59:54 by mtavares         ###   ########.fr        #
+#    Updated: 2022/08/16 18:56:12 by mtavares         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS		=	$(SRCS_DIR)/check_map.c \
 				$(SRCS_DIR)/load_imgs.c \
 				$(SRCS_DIR)/main.c \
 				$(SRCS_DIR)/map_to_str.c \
-				$(SRCS_DIR)/move_player.c
+				$(SRCS_DIR)/move_player.c \
+				$(SRCS_DIR)/algorithm.c \
 
 SRCS_DIR	=	srcs
 
@@ -38,7 +39,7 @@ NAME		=	so_long
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
 
 RM			=	rm -rf
 
@@ -74,4 +75,4 @@ fclean:		clean
 re:			fclean all
 
 .SILENT: all clean fclean re
-.PHONY: all clean fclean re 
+.PHONY: all clean fclean re
