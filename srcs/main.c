@@ -6,16 +6,16 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/16 18:31:18 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/18 15:46:00 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void get_player_pos(t_gen *gen)
+static void	get_player_pos(t_gen *gen)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (gen->map.str[++i])
@@ -27,16 +27,16 @@ static void get_player_pos(t_gen *gen)
 			{
 				gen->map.player_x = j;
 				gen->map.player_y = i;
-				return;
+				return ;
 			}
 		}
 	}
-	return;
+	return ;
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_gen gen;
+	t_gen	gen;
 
 	gen.init_values = init_values;
 	gen.init_values(&gen);

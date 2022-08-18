@@ -1,6 +1,6 @@
 #include "../includes/so_long.h"
 
-static void algo(t_cp *cp, int x, int y)
+static void	algo(t_cp *cp, int x, int y)
 {
 	cp->map[y][x] = 'P';
 	if (x - 1 > -1 && cp->map[y][x - 1] != '1' && \
@@ -15,12 +15,12 @@ static void algo(t_cp *cp, int x, int y)
 	if (y + 1 < cp->len_y && cp->map[y + 1][x] != '1' && \
 	cp->map[y + 1][x] != 'P' && cp->map[y + 1][x] != 'E')
 		algo(cp, x, y + 1);
-	return;
+	return ;
 }
 
-static void free_map(t_cp *cp)
+static void	free_map(t_cp *cp)
 {
-	int i;
+	int	i;
 
 	if (cp->map)
 	{
@@ -57,11 +57,30 @@ static t_cp	cp_init(t_gen *gen)
 	return (cp);
 }
 
-int pre_algo(t_gen *gen)
+int	check_path_map(t_cp *cp, int x, int y)
 {
-	t_cp cp;
-	int x;
-	int y;
+	if (cp->map[y][x] == 'C')
+	{
+		free_map(&cp);
+		return (1);
+	}
+	if (cp->map[y][x] == 'E')
+	{
+		if (cp->map[y][x - 1] != 'P' && cp->map[y - 1][x] != 'P' \
+		&& cp->map[y][x + 1] != 'P' && cp->map[y + 1][x] != 'P')
+		{
+			free_map(&cp);
+			return (1);
+		}
+	}
+}
+
+int	pre_algo(t_gen *gen)
+{
+	t_cp	cp;
+	int		x;
+	int		y;
+	int		i;
 
 	cp = cp_init(gen);
 	x = gen->map.player_x;
@@ -73,20 +92,9 @@ int pre_algo(t_gen *gen)
 		x = -1;
 		while (cp.map[y][++x])
 		{
-			if (cp.map[y][x] == 'C')
-			{
-				free_map(&cp);
-				return (1);
-			}
-			if (cp.map[y][x] == 'E')
-			{
-				if (cp.map[y][x - 1] != 'P' && cp.map[y - 1][x] != 'P' \
-				&& cp.map[y][x + 1] != 'P' && cp.map[y + 1][x] != 'P')
-				{
-					free_map(&cp);
-					return (1);
-				}
-			}
+			i = check_path_map(&cp, x, y);
+			if (i)
+				return (i);
 		}
 	}
 	free_map(&cp);
