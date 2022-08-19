@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 16:08:14 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/19 15:22:13 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/19 21:45:53 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ static void	algorithm(t_cp *cp, int x, int y)
 {
 	cp->map[y][x] = 'P';
 	if (x - 1 > -1 && cp->map[y][x - 1] != 'P' && \
-	cp->map[y][x - 1] != 'C' && cp->map[y][x - 1] != '0')
+	(cp->map[y][x - 1] == 'C' || cp->map[y][x - 1] == '0'))
 		algorithm(cp, x - 1, y);
 	if (y - 1 > -1 && cp->map[y - 1][x] != 'P' && \
-	cp->map[y - 1][x] != 'C' && cp->map[y - 1][x] != '0')
+	(cp->map[y - 1][x] == 'C' || cp->map[y - 1][x] == '0'))
 		algorithm(cp, x, y - 1);
 	if (x + 1 < cp->len_x && cp->map[y][x + 1] != 'P' && \
-	cp->map[y][x + 1] != 'C' && cp->map[y][x + 1] != '0')
+	(cp->map[y][x + 1] == 'C' || cp->map[y][x + 1] == '0'))
 		algorithm(cp, x + 1, y);
 	if (y + 1 < cp->len_y && cp->map[y + 1][x] != 'P' && \
-	cp->map[y + 1][x] != 'C' && cp->map[y + 1][x] != '0')
+	(cp->map[y + 1][x] == 'C' || cp->map[y + 1][x] == '0'))
 		algorithm(cp, x, y + 1);
 	return ;
 }

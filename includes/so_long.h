@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/18 17:51:39 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/19 21:44:10 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,14 @@
 
 /* Typedefs */
 
-typedef struct s_gen	t_gen;
-typedef void			(*t_generic)(t_gen *gen);
-typedef int				(*t_cm)(t_gen *gen, char **av);
+typedef struct s_gen		t_gen;
+typedef struct s_check_path	t_cp;
+typedef struct s_hook		t_hook;
+typedef struct s_map		t_map;
+typedef struct s_win		t_win;
+typedef struct s_img		t_img;
+typedef void				(*t_generic)(t_gen *gen);
+typedef int					(*t_cm)(t_gen *gen, char **av);
 
 /* Structs */
 
@@ -61,7 +66,6 @@ struct s_hook
 {
 	t_generic	hooks;
 };
-typedef struct s_hook	t_hook;
 
 struct s_map
 {
@@ -78,23 +82,18 @@ struct s_map
 	int			end;
 	t_cm		check_map;
 };
-typedef struct s_map	t_map;
-
 struct s_win
 {
 	void		*mlx;
 	void		*win;
 	t_generic	create_window;
 };
-typedef struct s_win	t_win;
 
 struct s_img
 {
 	void		**img;
 	t_generic	load_img;
 };
-
-typedef struct s_img	t_img;
 
 struct s_gen
 {
@@ -112,13 +111,12 @@ struct s_check_path
 	int		len_y;
 	char	**map;
 };
-typedef struct s_check_path	t_cp;
 
 /* Functions */
 
 void	exit_prog(t_gen	*gen, char	*str, int i);
 void	init_values(t_gen *gen);
-int 	prep_alg(t_gen *gen);
+int		prep_alg(t_gen *gen);
 int		check_map(t_gen *gen, char **av);
 void	check_mov(t_gen *gen, int keycode);
 char	**map_to_str(char **map, int fd, int counter);
