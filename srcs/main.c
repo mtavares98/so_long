@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 23:09:42 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/18 15:46:00 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/18 17:51:55 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int ac, char **av)
 		exit_prog(&gen, "Wrong number of arguments\n", 1);
 	gen.map.check_map(&gen, av);
 	get_player_pos(&gen);
-	if (pre_algo(&gen))
+	if (prep_alg(&gen))
 		exit_prog(&gen, "Can't complete the map\n", 1);
 	gen.win.create_window(&gen);
 	gen.img.load_img(&gen);

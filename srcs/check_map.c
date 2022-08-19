@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:10:03 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/17 21:51:25 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/18 16:19:00 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ int	check_map(t_gen *gen, char **av)
 	if (have_comp(gen))
 		exit_prog(gen, \
 	"It requires one player, exit and at leat one \
-colectable or have invalid chars\n", 1);
+collectable or have invalid chars\n", 1);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/17 22:49:58 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/18 17:51:39 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ typedef struct s_check_path	t_cp;
 
 void	exit_prog(t_gen	*gen, char	*str, int i);
 void	init_values(t_gen *gen);
-int 	pre_algo(t_gen *gen);
+int 	prep_alg(t_gen *gen);
 int		check_map(t_gen *gen, char **av);
 void	check_mov(t_gen *gen, int keycode);
 char	**map_to_str(char **map, int fd, int counter);

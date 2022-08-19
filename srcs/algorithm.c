@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithm.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/18 16:08:14 by mtavares          #+#    #+#             */
+/*   Updated: 2022/08/18 16:28:52 by mtavares         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
 
-static void	algo(t_cp *cp, int x, int y)
+static void	algorithm(t_cp *cp, int x, int y)
 {
 	cp->map[y][x] = 'P';
 	if (x - 1 > -1 && cp->map[y][x - 1] != '1' && \
@@ -61,7 +73,7 @@ int	check_path_map(t_cp *cp, int x, int y)
 {
 	if (cp->map[y][x] == 'C')
 	{
-		free_map(&cp);
+		free_map(cp);
 		return (1);
 	}
 	if (cp->map[y][x] == 'E')
@@ -69,13 +81,14 @@ int	check_path_map(t_cp *cp, int x, int y)
 		if (cp->map[y][x - 1] != 'P' && cp->map[y - 1][x] != 'P' \
 		&& cp->map[y][x + 1] != 'P' && cp->map[y + 1][x] != 'P')
 		{
-			free_map(&cp);
+			free_map(cp);
 			return (1);
 		}
 	}
+	return (0);
 }
 
-int	pre_algo(t_gen *gen)
+int	prep_alg(t_gen *gen)
 {
 	t_cp	cp;
 	int		x;
@@ -85,7 +98,7 @@ int	pre_algo(t_gen *gen)
 	cp = cp_init(gen);
 	x = gen->map.player_x;
 	y = gen->map.player_y;
-	algo(&cp, x, y);
+	algorithm(&cp, x, y);
 	y = -1;
 	while (cp.map[++y])
 	{
