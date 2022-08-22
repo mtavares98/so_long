@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtavares <mtavares@student.42.fr>          +#+  +:+       +#+         #
+#    By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 22:22:28 by mtavares          #+#    #+#              #
-#    Updated: 2022/08/19 15:20:12 by mtavares         ###   ########.fr        #
+#    Updated: 2022/08/22 15:45:33 by mtavares         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ NAME		=	so_long
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g# -fsanitize=address
 
 RM			=	rm -rf
 

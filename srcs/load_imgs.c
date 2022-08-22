@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:05:36 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/16 17:35:02 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:50:41 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ static void	get_imgs(t_gen *gen)
 	gen->img.img[4] = mlx_xpm_file_to_image(gen->win.mlx, "img/04.xpm", \
 	&width, &height);
 	if (gen->map.enemy)
+	{
 		gen->img.img[5] = mlx_xpm_file_to_image(gen->win.mlx, "img/05.xpm", \
 	&width, &height);
+		gen->img.img[6] = NULL;
+	}
 	else
 		gen->img.img[5] = NULL;
 }
@@ -53,6 +56,9 @@ void	map_to_img(t_gen *gen)
 	int	x;
 	int	y;
 
+	gen->img.img = malloc(sizeof(void *) * (6 + (gen->map.enemy)));
+	if (!gen->img.img)
+		exit_prog(gen, "Memory allocations failed\n", 1);
 	get_imgs(gen);
 	y = -1;
 	while (gen->map.str[++y])
