@@ -6,7 +6,7 @@
 #    By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 22:22:28 by mtavares          #+#    #+#              #
-#    Updated: 2022/08/22 15:45:33 by mtavares         ###   ########.fr        #
+#    Updated: 2022/08/23 16:12:53 by mtavares         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ NAME		=	so_long
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Wextra -Werror -g# -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
 
 RM			=	rm -rf
 
@@ -50,7 +50,7 @@ $(OBJS_DIR)/%.o :	$(SRCS_DIR)/%.c
 		$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(NAME):	$(LIBFT) $(PRINTF) $(MLX) $(OBJS)
-		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(PRINTF) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) -Llibs/libft -lft -Llibs/printf_fd -lprintf_fd -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 $(LIBFT):
 		make -C libs/libft

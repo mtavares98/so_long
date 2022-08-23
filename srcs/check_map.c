@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:10:03 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/18 16:19:00 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:46:56 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ static int	count_comp(t_gen *gen, int i, int j)
 	else if (gen->map.str[i][j] == 'C')
 		gen->map.collectable++;
 	else if (gen->map.str[i][j] == 'P')
+	{
 		gen->map.player++;
+		gen->map.player_x = j;
+		gen->map.player_y = i;
+	}
 	else if (gen->map.str[i][j] == '0')
 		gen->map.empty++;
 	else if (gen->map.str[i][j] == '1')
@@ -62,29 +66,6 @@ static int	map_rect(t_gen *gen)
 		if (ft_strlen(gen->map.str[i]) != ft_strlen(gen->map.str[i + 1]))
 			return (1);
 	}
-	if (i < 2)
-		return (2);
-	return (0);
-}
-
-static int	map_closed(t_gen *gen)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (gen->map.str[++i])
-		;
-	j = -1;
-	i--;
-	while (gen->map.str[i][++j])
-		if (gen->map.str[0][j] != '1' || gen->map.str[i][j] != '1')
-			return (1);
-	i = 0;
-	j--;
-	while (gen->map.str[++i])
-		if (gen->map.str[i][0] != '1' || gen->map.str[i][j] != '1')
-			return (1);
 	return (0);
 }
 
@@ -106,14 +87,10 @@ int	check_map(t_gen *gen, char **av)
 		exit_prog(gen, "File's empty\n", 1);
 	i = map_rect(gen);
 	if (i == 1)
-		exit_prog(gen, "Map isn't rectangular\n", 1);
-	if (i == 2)
-		exit_prog(gen, "Does't have sufficient height\n", 1);
-	if (map_closed(gen))
-		exit_prog(gen, "Map is not closed\n", 1);
+		exit_prog(gen, "Invalid map\n", 1);
 	if (have_comp(gen))
-		exit_prog(gen, \
-	"It requires one player, exit and at leat one \
-collectable or have invalid chars\n", 1);
+		exit_prog(gen, "Invalid map\n", 1);
+	if (prep_alg(gen))
+		exit_prog(gen, "Invalid map\n", 1);
 	return (1);
 }

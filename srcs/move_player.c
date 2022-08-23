@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:35:11 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/28 16:02:41 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:34:49 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,7 @@ static void	moveplayer(t_gen *gen, int keycode, char *next_move, int steps)
 	if (*next_move == 'X')
 		exit_prog(gen, "You lost\n", 0);
 	if (!gen->map.collectable && *next_move == 'E')
-	{
-		printf_fd(1, "Press any key to left the game\n");
-		gen->map.end = 0;
-		return ;
-	}
+		exit_prog(gen, "You win\n", 0);
 	*next_move = 'P';
 	gen->map.str[gen->map.player_y][gen->map.player_x] = '0';
 	update_map(gen, keycode);
