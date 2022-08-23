@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/23 18:38:39 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:54:32 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ struct s_map
 	int			exit;
 	int			empty;
 	int			other;
-	int			end;
 };
 struct s_win
 {

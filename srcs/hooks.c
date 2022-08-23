@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:40:27 by mtavares          #+#    #+#             */
-/*   Updated: 2022/07/28 16:03:07 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:54:25 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static int	hook(t_gen *gen)
 
 static int	key_hook(int keycode, t_gen *gen)
 {
-	if (!gen->map.end)
-		exit_prog(gen, "You win\n", 0);
 	if (keycode == ESC)
 		exit_prog(gen, "Exited the game\n", 0);
 	if (keycode == W || keycode == A || keycode == S || keycode == D)
