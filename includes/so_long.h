@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/19 21:44:10 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:38:39 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,11 @@
 
 typedef struct s_gen		t_gen;
 typedef struct s_check_path	t_cp;
-typedef struct s_hook		t_hook;
 typedef struct s_map		t_map;
 typedef struct s_win		t_win;
 typedef struct s_img		t_img;
-typedef void				(*t_generic)(t_gen *gen);
-typedef int					(*t_cm)(t_gen *gen, char **av);
 
 /* Structs */
-
-struct s_hook
-{
-	t_generic	hooks;
-};
 
 struct s_map
 {
@@ -80,29 +72,23 @@ struct s_map
 	int			empty;
 	int			other;
 	int			end;
-	t_cm		check_map;
 };
 struct s_win
 {
 	void		*mlx;
 	void		*win;
-	t_generic	create_window;
 };
 
 struct s_img
 {
 	void		**img;
-	t_generic	load_img;
 };
 
 struct s_gen
 {
 	t_win		win;
 	t_map		map;
-	t_hook		hook;
 	t_img		img;
-	t_generic	init_values;
-
 };
 
 struct s_check_path

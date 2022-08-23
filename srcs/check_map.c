@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:10:03 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/23 14:46:56 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:43:51 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ static int	have_comp(t_gen *gen)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	while (gen->map.str[++i])
 	{
-		j = 0;
+		j = -1;
 		while (gen->map.str[i][++j] != '\0')
 		{
 			if (count_comp(gen, i, j) == 1)
@@ -71,7 +71,6 @@ static int	map_rect(t_gen *gen)
 
 int	check_map(t_gen *gen, char **av)
 {
-	int		i;
 	char	*str;
 	int		fd;
 
@@ -85,8 +84,7 @@ int	check_map(t_gen *gen, char **av)
 	close(fd);
 	if (!gen->map.str)
 		exit_prog(gen, "File's empty\n", 1);
-	i = map_rect(gen);
-	if (i == 1)
+	if (map_rect(gen))
 		exit_prog(gen, "Invalid map\n", 1);
 	if (have_comp(gen))
 		exit_prog(gen, "Invalid map\n", 1);

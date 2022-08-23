@@ -6,7 +6,7 @@
 #    By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 22:22:28 by mtavares          #+#    #+#              #
-#    Updated: 2022/08/23 16:12:53 by mtavares         ###   ########.fr        #
+#    Updated: 2022/08/23 17:14:16 by mtavares         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ SRCS		=	$(SRCS_DIR)/check_map.c \
 				$(SRCS_DIR)/get_next_line.c \
 				$(SRCS_DIR)/get_next_line_utils.c \
 				$(SRCS_DIR)/hooks.c \
-				$(SRCS_DIR)/init_values.c \
 				$(SRCS_DIR)/load_imgs.c \
 				$(SRCS_DIR)/main.c \
 				$(SRCS_DIR)/map_to_str.c \

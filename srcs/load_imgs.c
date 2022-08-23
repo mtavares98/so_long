@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:05:36 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/22 15:50:41 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:31:31 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	get_imgs(t_gen *gen)
 		gen->img.img[5] = NULL;
 }
 
-void	destroy_imgs(t_gen *gen)
+static void	destroy_imgs(t_gen *gen)
 {
 	int	i;
 
