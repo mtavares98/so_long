@@ -6,70 +6,61 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 00:05:36 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/23 18:31:31 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/24 22:24:11 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	get_imgs(t_gen *gen)
+static void	get_imgs(t_gen *gen, int *width, int *height)
 {
-	int	width;
-	int	height;
+	char	*str;
+	int		i;
+	int		num;
 
-	width = 32;
-	height = 32;
-	gen->img.img[0] = mlx_xpm_file_to_image(gen->win.mlx, "img/00.xpm", \
-	&width, &height);
-	gen->img.img[1] = mlx_xpm_file_to_image(gen->win.mlx, "img/01.xpm", \
-	&width, &height);
-	gen->img.img[2] = mlx_xpm_file_to_image(gen->win.mlx, "img/02.xpm", \
-	&width, &height);
-	gen->img.img[3] = mlx_xpm_file_to_image(gen->win.mlx, "img/03.xpm", \
-	&width, &height);
-	gen->img.img[4] = mlx_xpm_file_to_image(gen->win.mlx, "img/04.xpm", \
-	&width, &height);
-	if (gen->map.enemy)
+	str = ft_strdup("imgs/00.xpm");
+	if (!str)
+		exit_prog(gen, "Something wrong with ft_strdup\n", 1);
+	i = -1;
+	num = -1;
+	while (++i < 15)
 	{
-		gen->img.img[5] = mlx_xpm_file_to_image(gen->win.mlx, "img/05.xpm", \
-	&width, &height);
-		gen->img.img[6] = NULL;
+		if (++num > 9)
+		{
+			num = 0;
+			str[5] += 1;
+		}
+		str[6] = num + 48;
+		gen->img.img[i] = mlx_xpm_file_to_image(gen->win.mlx, str, \
+		width, height);
+		if (!gen->img.img[i])
+			exit_prog(gen, "Allocation for the image failed\n", 1);
 	}
-	else
-		gen->img.img[5] = NULL;
-}
-
-static void	destroy_imgs(t_gen *gen)
-{
-	int	i;
-
-	i = 2;
-	while (++i < 5 + (gen->map.enemy > 0))
-	{
-		mlx_destroy_image(gen->win.mlx, gen->img.img[i]);
-		gen->img.img[i] = NULL;
-	}
+	free(str);
 }
 
 void	map_to_img(t_gen *gen)
 {
 	int	x;
 	int	y;
+	int	width;
+	int	height;
 
-	gen->img.img = malloc(sizeof(void *) * (6 + (gen->map.enemy)));
+	width = 32;
+	height = 32;
+	gen->img.img = ft_calloc(sizeof(void *), (16));
 	if (!gen->img.img)
 		exit_prog(gen, "Memory allocations failed\n", 1);
-	get_imgs(gen);
+	get_imgs(gen, &width, &height);
 	y = -1;
 	while (gen->map.str[++y])
 	{
 		x = -1;
 		while (gen->map.str[y][++x])
 			mlx_put_image_to_window(gen->win.mlx, gen->win.win, \
-		gen->img.img[(gen->map.str[y][x] == '1') * 0 + \
-		(gen->map.str[y][x] == '0') + (gen->map.str[y][x] == 'P') * 2 \
-		+ (gen->map.str[y][x] == 'C') * 3 + (gen->map.str[y][x] == 'E') * 4 + \
-		(gen->map.str[y][x] == 'X') * 5], x * 32, y * 32);
+		gen->img.img[(gen->map.str[y][x] == '1') * 12 + \
+		(gen->map.str[y][x] == '0') * 0 + (gen->map.str[y][x] == 'P') * 2 \
+		+ (gen->map.str[y][x] == 'C') * 6 + (gen->map.str[y][x] == 'E') + \
+		(gen->map.str[y][x] == 'X') * 13], x * 32, y * 32);
 	}
-	destroy_imgs(gen);
 }

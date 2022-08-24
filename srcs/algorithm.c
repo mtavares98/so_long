@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 16:08:14 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/23 15:45:46 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/24 14:51:29 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	algorithm(t_cp *cp, int x, int y, int *is_open)
 	((x == 0 || x == cp->len_x) && cp->map[y][x] != '1'))
 	{
 		*is_open = 1;
+		cp->map[y][x] = 'C';
 		return ;
 	}
 	cp->map[y][x] = 'P';

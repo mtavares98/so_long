@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/23 18:54:32 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:19:08 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,15 @@
 # include <string.h>
 # include <math.h>
 
-# ifndef W
-#  define W 119
-# endif
-
-# ifndef S
-#  define S 115
-# endif
-
-# ifndef A
-#  define A 97
-# endif
-
-# ifndef D
-#  define D 100
-# endif
-
-# ifndef ESC
-#  define ESC 65307
-# endif
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+# define ESC 65307
+# define DOWN 2
+# define UP 3
+# define LEFT 4
+# define RIGHT 5
 
 /* Keycode importants:
 	w = 119

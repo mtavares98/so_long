@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:35:11 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/23 18:56:27 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/24 22:18:04 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,19 @@ static void	print_steps(t_gen *gen, int steps)
 	str = ft_itoa(steps);
 	while (++i <= x)
 		mlx_put_image_to_window(gen->win.mlx, gen->win.win, \
-		gen->img.img[0], i * 32, 0);
+		gen->img.img[12], i * 32, 0);
 	mlx_string_put(gen->win.mlx, gen->win.win, 32, 32, 0x00000000, str);
 	free(str);
 }
 
 static void	update_map(t_gen *gen, int keycode)
 {
-	mlx_put_image_to_window(gen->win.mlx, gen->win.win, gen->img.img[2], \
+	mlx_put_image_to_window(gen->win.mlx, gen->win.win, \
+	gen->img.img[(keycode == W) * DOWN + (keycode == S) * UP + \
+	(keycode == A) * LEFT + (keycode == D) * RIGHT], \
 	(gen->map.player_x - (keycode == A) + (keycode == D)) * 32, \
 	(gen->map.player_y - (keycode == W) + (keycode == S)) * 32);
-	mlx_put_image_to_window(gen->win.mlx, gen->win.win, gen->img.img[1], \
+	mlx_put_image_to_window(gen->win.mlx, gen->win.win, gen->img.img[0], \
 	(gen->map.player_x) * 32, (gen->map.player_y) * 32);
 }
 
@@ -51,11 +53,28 @@ static void	moveplayer(t_gen *gen, int keycode, char *next_move, int steps)
 	print_steps(gen, steps);
 }
 
+static int	check_faced(t_gen *gen, int keycode)
+{
+	static int	turn = DOWN;
+	int			faced;
+
+	faced = (keycode == W) * DOWN + (keycode == S) * UP + \
+	(keycode == A) * LEFT + (keycode == D) * RIGHT;
+	if (faced == turn)
+		return (0);
+	turn = faced;
+	mlx_put_image_to_window(gen->win.mlx, gen->win.win, gen->img.img[faced], \
+	gen->map.player_x * 32, gen->map.player_y * 32);
+	return (1);
+}
+
 void	check_mov(t_gen *gen, int keycode)
 {
 	static int	steps = 0;
 	char		*next_move;
 
+	if (check_faced(gen, keycode))
+		return ;
 	next_move = &gen->map.str[gen->map.player_y - (keycode == W) + \
 	(keycode == S)][gen->map.player_x - (keycode == A) + (keycode == D)];
 	if (*next_move == 'C')
