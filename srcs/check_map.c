@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:10:03 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/23 18:43:51 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/25 22:38:51 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static int	have_comp(t_gen *gen)
 	int	j;
 
 	i = -1;
+	j = -1;
 	while (gen->map.str[++i])
 	{
 		j = -1;
@@ -50,6 +51,8 @@ static int	have_comp(t_gen *gen)
 				return (1);
 		}
 	}
+	gen->map.len_x = j;
+	gen->map.len_y = i;
 	if (gen->map.exit != 1 || gen->map.collectable < 1 || \
 	gen->map.player != 1)
 		return (1);

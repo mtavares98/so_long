@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/24 17:19:08 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/25 22:25:18 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,18 @@ typedef struct s_img		t_img;
 
 struct s_map
 {
-	int			player_x;
-	int			player_y;
-	char		**str;
-	int			enemy;
-	int			walls;
-	int			player;
-	int			collectable;
-	int			exit;
-	int			empty;
-	int			other;
+	int		player_x;
+	int		player_y;
+	int		len_x;
+	int		len_y;
+	char	**str;
+	int		enemy;
+	int		walls;
+	int		player;
+	int		collectable;
+	int		exit;
+	int		empty;
+	int		other;
 };
 struct s_win
 {
@@ -96,6 +98,7 @@ int		check_map(t_gen *gen, char **av);
 void	check_mov(t_gen *gen, int keycode);
 char	**map_to_str(char **map, int fd, int counter);
 void	map_to_img(t_gen *gen);
+void	print_map(t_gen *gen, int frame);
 void	hook_loops(t_gen *gen);
 void	create_window(t_gen *gen);
 

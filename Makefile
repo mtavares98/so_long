@@ -6,11 +6,12 @@
 #    By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/18 22:22:28 by mtavares          #+#    #+#              #
-#    Updated: 2022/08/24 22:10:36 by mtavares         ###   ########.fr        #
+#    Updated: 2022/08/25 22:39:35 by mtavares         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	$(SRCS_DIR)/check_map.c \
+SRCS		=	$(SRCS_DIR)/animation.c \
+				$(SRCS_DIR)/check_map.c \
 				$(SRCS_DIR)/create_window.c \
 				$(SRCS_DIR)/exit_free.c \
 				$(SRCS_DIR)/get_next_line.c \
