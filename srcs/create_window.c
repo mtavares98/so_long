@@ -25,8 +25,6 @@ void	create_window(t_gen	*gen)
 	gen->win.mlx = mlx_init();
 	if (!gen->win.mlx)
 		exit_prog(gen, "Error ocurred during mlx_init\n", 1);
-	if (gen->win.win)
-		mlx_destroy_window(gen->win.mlx, gen->win.win);
 	gen->win.win = mlx_new_window(gen->win.mlx, x, y, "MyGame");
 	if (!gen->win.win)
 		exit_prog(gen, "Error ocurred during mlx_new window\n", 1);

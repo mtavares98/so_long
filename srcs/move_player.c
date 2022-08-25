@@ -17,13 +17,17 @@ static void	print_steps(t_gen *gen, int steps)
 	char	*str;
 	int		i;
 	int		x;
+	char	c;
 
 	i = -1;
 	x = ft_strlen(gen->map.str[0]);
 	str = ft_itoa(steps);
 	while (++i <= x)
+	{
+		c = gen->map.str[0][i];
 		mlx_put_image_to_window(gen->win.mlx, gen->win.win, \
-		gen->img.img[12], i * 32, 0);
+		gen->img.img[(c == '1') * 12 + (c == 'X') * 13], i * 32, 0);
+	}
 	mlx_string_put(gen->win.mlx, gen->win.win, 32, 32, 0x00000000, str);
 	free(str);
 }

@@ -12,7 +12,7 @@
 
 #include "../includes/so_long.h"
 
-static void	get_imgs(t_gen *gen, int *width, int *height)
+static void	get_imgs(t_gen *gen, int *w, int *h)
 {
 	char	*str;
 	int		i;
@@ -31,10 +31,12 @@ static void	get_imgs(t_gen *gen, int *width, int *height)
 			str[5] += 1;
 		}
 		str[6] = num + 48;
-		gen->img.img[i] = mlx_xpm_file_to_image(gen->win.mlx, str, \
-		width, height);
+		gen->img.img[i] = mlx_xpm_file_to_image(gen->win.mlx, str, w, h);
 		if (!gen->img.img[i])
+		{
+			free(str);
 			exit_prog(gen, "Allocation for the image failed\n", 1);
+		}
 	}
 	free(str);
 }

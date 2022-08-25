@@ -16,8 +16,8 @@ static void	algorithm(t_cp *cp, int x, int y, int *is_open)
 {
 	if (*is_open)
 		return ;
-	if (((y == 0 || y == cp->len_y) && cp->map[y][x] != '1') | \
-	((x == 0 || x == cp->len_x) && cp->map[y][x] != '1'))
+	if (((y == 0 || y == cp->len_y - 1) && cp->map[y][x] != '1') || \
+	((x == 0 || x == cp->len_x - 1) && cp->map[y][x] != '1'))
 	{
 		*is_open = 1;
 		cp->map[y][x] = 'C';
