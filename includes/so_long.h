@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/25 22:25:18 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:47:50 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define UP 3
 # define LEFT 4
 # define RIGHT 5
+# define WALL 12
+# define EMPTY 0
+# define EXIT 1
 
 /* Keycode importants:
 	w = 119
@@ -80,6 +83,7 @@ struct s_gen
 	t_win		win;
 	t_map		map;
 	t_img		img;
+	int			steps;
 };
 
 struct s_check_path

@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:40:27 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/25 22:37:46 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:41:19 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,20 @@
 static int	animate(t_gen *gen)
 {
 	static int	frame;
+	char		*str;
+	int			i;
 
 	print_map(gen, frame);
 	frame++;
+	str = ft_itoa(gen->steps);
+	if (!str)
+		exit_prog(gen, "Allocation failed in itoa\n", 1);
+	i = -1;
+	while (++i < gen->map.len_x)
+		mlx_put_image_to_window(gen->win.mlx, gen->win.win, \
+		gen->img.img[12], i * 32, 0);
+	mlx_string_put(gen->win.mlx, gen->win.win, 32, 32, 0x00000000, str);
+	free(str);
 	if (frame == 60)
 		frame = 0;
 	return (0);

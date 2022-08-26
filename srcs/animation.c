@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 22:20:44 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/25 22:39:53 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:50:55 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ static void	put_enemy(t_gen *gen, int frame, int x, int y)
 		gen->img.img[14], x * 32, y * 32);
 }
 
+static void	put_others(t_gen *gen, int x, int y, int other)
+{
+	mlx_put_image_to_window(gen->win.mlx, gen->win.win, \
+	gen->img.img[other], x * 32, y * 32);
+}
+
 void	print_map(t_gen *gen, int frame)
 {
 	int	i;
@@ -71,6 +77,12 @@ void	print_map(t_gen *gen, int frame)
 				put_collectable(gen, frame, j, i);
 			else if (gen->map.str[i][j] == 'X')
 				put_enemy(gen, frame, j, i);
+			else if (gen->map.str[i][j] == '0')
+				put_others(gen, j, i, EMPTY);
+			else if (gen->map.str[i][j] == '1')
+				put_others(gen, j, i, WALL);
+			else if (gen->map.str[i][j] == 'E')
+				put_others(gen, j, i, EXIT);
 		}
 	}
 }

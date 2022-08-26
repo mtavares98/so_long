@@ -6,13 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:35:11 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/25 22:45:10 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/26 16:40:58 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	print_steps(t_gen *gen, int steps)
+/* static void	print_steps(t_gen *gen, int steps)
 {
 	char	*str;
 	int		i;
@@ -31,7 +31,7 @@ static void	print_steps(t_gen *gen, int steps)
 	mlx_string_put(gen->win.mlx, gen->win.win, 32, 32, 0x00000000, str);
 	free(str);
 }
-
+ */
 static void	update_map(t_gen *gen, int keycode)
 {
 	mlx_put_image_to_window(gen->win.mlx, gen->win.win, \
@@ -43,7 +43,7 @@ static void	update_map(t_gen *gen, int keycode)
 	(gen->map.player_x) * 32, (gen->map.player_y) * 32);
 }
 
-static void	moveplayer(t_gen *gen, int keycode, char *next_move, int steps)
+static void	moveplayer(t_gen *gen, int keycode, char *next_move)
 {
 	if (*next_move == 'X')
 		exit_prog(gen, "You lost\n", 0);
@@ -54,12 +54,11 @@ static void	moveplayer(t_gen *gen, int keycode, char *next_move, int steps)
 	update_map(gen, keycode);
 	gen->map.player_x += -(keycode == A) + (keycode == D);
 	gen->map.player_y += -(keycode == W) + (keycode == S);
-	print_steps(gen, steps);
+	gen->steps++;
 }
 
 void	check_mov(t_gen *gen, int keycode)
 {
-	static int	steps = 0;
 	char		*next_move;
 
 	next_move = &gen->map.str[gen->map.player_y - (keycode == W) + \
@@ -67,6 +66,6 @@ void	check_mov(t_gen *gen, int keycode)
 	if (*next_move == 'C')
 		gen->map.collectable--;
 	if (*next_move != '1' && (*next_move != 'E' || !gen->map.collectable))
-		moveplayer(gen, keycode, next_move, ++steps);
+		moveplayer(gen, keycode, next_move);
 	return ;
 }
