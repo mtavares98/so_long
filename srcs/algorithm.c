@@ -6,36 +6,25 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 16:08:14 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/25 21:27:46 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/26 01:28:44 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	algorithm(t_cp *cp, int x, int y, int *is_open)
+static void	algorithm(t_cp *cp, int x, int y)
 {
-	if (*is_open)
-		return ;
-	if (cp->map[0][x] != '1' || cp->map[cp->len_y -1][x] != '1' || \
-	cp->map[y][0] != '1' || cp->map[y][cp->len_x -1] != '1')
-	{
-		*is_open = 1;
-		cp->map[y][x] = 'C';
-		return ;
-	}
 	cp->map[y][x] = 'P';
-	if (x - 1 > -1 && !*is_open && \
-	(cp->map[y][x - 1] == 'C' || cp->map[y][x - 1] == '0'))
-		algorithm(cp, x - 1, y, is_open);
-	if (y - 1 > -1 && !*is_open && \
-	(cp->map[y - 1][x] == 'C' || cp->map[y - 1][x] == '0'))
-		algorithm(cp, x, y - 1, is_open);
-	if (x + 1 < cp->len_x && !*is_open && \
+	if (x - 1 > -1 && (cp->map[y][x - 1] == 'C' || cp->map[y][x - 1] == '0'))
+		algorithm(cp, x - 1, y);
+	if (y - 1 > -1 && (cp->map[y - 1][x] == 'C' || cp->map[y - 1][x] == '0'))
+		algorithm(cp, x, y - 1);
+	if (x + 1 < cp->len_x && \
 	(cp->map[y][x + 1] == 'C' || cp->map[y][x + 1] == '0'))
-		algorithm(cp, x + 1, y, is_open);
-	if (y + 1 < cp->len_y && !*is_open && \
+		algorithm(cp, x + 1, y);
+	if (y + 1 < cp->len_y && \
 	(cp->map[y + 1][x] == 'C' || cp->map[y + 1][x] == '0'))
-		algorithm(cp, x, y + 1, is_open);
+		algorithm(cp, x, y + 1);
 	return ;
 }
 
@@ -113,8 +102,7 @@ int	prep_alg(t_gen *gen)
 	cp = cp_init(gen);
 	x = gen->map.player_x;
 	y = gen->map.player_y;
-	i = 0;
-	algorithm(&cp, x, y, &i);
+	algorithm(&cp, x, y);
 	y = -1;
 	while (cp.map[++y])
 	{

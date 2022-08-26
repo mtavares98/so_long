@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:10:03 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/25 22:38:51 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/26 01:25:54 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,26 @@
 
 static int	count_comp(t_gen *gen, int i, int j)
 {
-	if (gen->map.str[i][j] == 'E')
+	if (gen->map.str[i][j] == 'E' && (i != 0 || i != gen->map.len_y) \
+	&& (j != 0 || j != gen->map.len_x))
 		gen->map.exit++;
-	else if (gen->map.str[i][j] == 'C')
+	else if (gen->map.str[i][j] == 'C' && (i != 0 || i != gen->map.len_y) \
+	&& (j != 0 || j != gen->map.len_x))
 		gen->map.collectable++;
-	else if (gen->map.str[i][j] == 'P')
+	else if (gen->map.str[i][j] == 'P' && (i != 0 || i != gen->map.len_y) \
+	&& (j != 0 || j != gen->map.len_x))
 	{
 		gen->map.player++;
 		gen->map.player_x = j;
 		gen->map.player_y = i;
 	}
-	else if (gen->map.str[i][j] == '0')
+	else if (gen->map.str[i][j] == '0' && (i != 0 || i != gen->map.len_y) \
+	&& (j != 0 || j != gen->map.len_x))
 		gen->map.empty++;
 	else if (gen->map.str[i][j] == '1')
 		gen->map.walls++;
-	else if (gen->map.str[i][j] == 'X')
+	else if (gen->map.str[i][j] == 'X' && (i != 0 || i != gen->map.len_y) \
+	&& (j != 0 || j != gen->map.len_x))
 		gen->map.enemy++;
 	else
 		return (1);
