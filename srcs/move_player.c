@@ -6,13 +6,13 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:35:11 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/26 16:40:58 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/08/28 13:25:38 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-/* static void	print_steps(t_gen *gen, int steps)
+static void	print_steps(t_gen *gen, int steps)
 {
 	char	*str;
 	int		i;
@@ -31,7 +31,7 @@
 	mlx_string_put(gen->win.mlx, gen->win.win, 32, 32, 0x00000000, str);
 	free(str);
 }
- */
+
 static void	update_map(t_gen *gen, int keycode)
 {
 	mlx_put_image_to_window(gen->win.mlx, gen->win.win, \
@@ -55,6 +55,7 @@ static void	moveplayer(t_gen *gen, int keycode, char *next_move)
 	gen->map.player_x += -(keycode == A) + (keycode == D);
 	gen->map.player_y += -(keycode == W) + (keycode == S);
 	gen->steps++;
+	print_steps(gen, gen->steps);
 }
 
 void	check_mov(t_gen *gen, int keycode)
