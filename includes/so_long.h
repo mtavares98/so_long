@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 22:26:18 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/26 16:47:50 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:16:43 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int		check_map(t_gen *gen, char **av);
 void	check_mov(t_gen *gen, int keycode);
 char	**map_to_str(char **map, int fd, int counter);
 void	map_to_img(t_gen *gen);
-void	print_map(t_gen *gen, int frame);
+void	print_map(t_gen *gen, int index_x, int index_c);
 void	hook_loops(t_gen *gen);
 void	create_window(t_gen *gen);
 

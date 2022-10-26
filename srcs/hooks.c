@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:40:27 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/28 13:27:19 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:52:06 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,21 @@
 static int	animate(t_gen *gen)
 {
 	static int	frame;
+	static int	index_x = 13;
+	static int	index_c = 6;
 
-	print_map(gen, frame);
 	frame++;
-	if (frame == 60)
+	if (frame == 10000)
+	{
+		print_map(gen, index_x, index_c);
+		index_x++;
+		index_c++;
 		frame = 0;
+		if (index_x == 15)
+			index_x = 13;
+		if (index_c == 12)
+			index_c = 6;
+	}
 	return (0);
 }
 
