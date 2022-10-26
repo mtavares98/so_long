@@ -6,7 +6,7 @@
 /*   By: mtavares <mtavares@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:10:03 by mtavares          #+#    #+#             */
-/*   Updated: 2022/08/26 01:25:54 by mtavares         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:56:22 by mtavares         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ int	check_map(t_gen *gen, char **av)
 	str = ft_strrchr(av[1], '.');
 	if (!str || strncmp(str, ".ber", 5))
 		exit_prog(gen, "Wrong extension name\n", 1);
+	fd = open(av[1], __O_DIRECTORY);
+	if (fd != -1)
+		exit_prog(gen, "It's a directory\n", 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		exit_prog(gen, "File doesn't exits\n", 1);
